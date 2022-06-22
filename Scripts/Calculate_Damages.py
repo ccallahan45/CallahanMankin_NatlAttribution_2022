@@ -36,7 +36,6 @@ y1_shares = int(sys.argv[3]) # year 1 of emissions shares
 y2_shares = int(sys.argv[4]) # year 2 of emissions shares
 y1_damages = int(sys.argv[5]) # year 1 of damages calculation
 y2_damages = int(sys.argv[6]) # year 2 of damages calculation
-iso_loop_section = sys.argv[7] # portion of the country loop
 
 # Shapefile
 shp = gp.read_file(loc_shp)
@@ -119,13 +118,6 @@ if funcname in ["BHMSR","BHMLR"]:
         func = (t * b1) + ((t**2) * b2)
         return(func)
 
-#print(b1)
-#print(b2)
-#print(np.std(b1))
-#print(np.std(b2))
-#sys.exit()
-
-
 if funcname=="BHMRP":
     b1_rich = damagefunc.loc[:,"coef_t_rich"].values
     b2_rich = damagefunc.loc[:,"coef_t2_rich"].values
@@ -206,9 +198,7 @@ growth_nans = xr.DataArray(np.full((1,len(iso_uq_continuous)),np.nan),
 							dims=["time","iso"])
 actual_growth = xr.concat([growth_nans,actual_frac_growth],dim="time")
 
-# Loop through each country and attribute damages to them. For a select few
-# (e.g., the US and China, write out country-level attributable damages),
-# but for the rest of them, just aggregate to the global level and output those totals.
+# Loop through each country and attribute damages to them.
 
 iso_global_attr_orig = fair_gmst.coords["iso_attr"].values
 iso_countrylevel_attr = ["USA","CHN","IND","GBR","RUS"]
@@ -221,50 +211,9 @@ iso_global_attr = np.append(iso_attr_first,iso_global_attr_orig_2)
 
 # run damages calculation
 
-print(iso_global_attr)
-if iso_loop_section == "first":
-    if funcname=="BHMLR":
-        begin_country = "ETH"
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3),1)
-    elif (funcname=="BHMRP")&(accounting=="territorial")&(y1_damages==1990):
-        begin_country = "SLV"
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3),1)
-    else:
-        iso_range = np.arange(0,np.floor(len(iso_global_attr)/3),1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3),1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),list(iso_global_attr).index(end_country)+1,1)
-elif iso_loop_section == "second":
-    if funcname=="BHMLR":
-        begin_country = "MNG"
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3)*2,1)
-    elif (funcname=="BHMSR")&(accounting=="territorial")&(y1_damages==1990):
-        begin_country = "HUN" # for ttest version
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3)*2,1)
-    else:
-        iso_range = np.arange(np.floor(len(iso_global_attr)/3),np.floor(len(iso_global_attr)/3)*2,1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),np.floor(len(iso_global_attr)/3)*2,1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),list(iso_global_attr).index(end_country)+1,1)
-elif iso_loop_section == "third":
-    if funcname=="BHMLR":
-        begin_country = "BWA"
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),len(iso_global_attr),1)
-    elif (funcname=="BHMRP")&(accounting=="territorial")&(y1_damages==1990):
-        begin_country = "JEY"
-        iso_range = np.arange(list(iso_global_attr).index(begin_country),len(iso_global_attr),1)
-    else:
-        iso_range = np.arange(np.floor(len(iso_global_attr)/3)*2,len(iso_global_attr),1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),len(iso_global_attr),1)
-    #iso_range = np.arange(list(iso_global_attr).index(begin_country),list(iso_global_attr).index(end_country)+1,1)
-elif iso_loop_section == "all":
-    iso_range = np.arange(0,len(iso_global_attr),1)
-else:
-    print("ERROR: iso_loop_section incorrectly defined!",flush=True)
-    sys.exit()
-
 # suppress annoying warning for mean of empty slice
-warnings.filterwarnings("ignore",message="Mean of empty",
-                        category=RuntimeWarning)
-
+warnings.filterwarnings("ignore",message="Mean of empty",category=RuntimeWarning)
+iso_range = np.arange(0,len(iso_global_attr),1)
 for ii in iso_range:
 
     iso_to_attr = iso_global_attr[int(ii)]
