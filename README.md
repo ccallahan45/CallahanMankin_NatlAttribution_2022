@@ -17,9 +17,10 @@ The repository is organized into **Scripts/**, **Figures/**, and **Data/** folde
 - *Construct_Panel.ipynb*
 - *FaIR_Attribution_Ensemble.ipynb*
 - *FaIR_GHGEmissions_Input.ipynb*
-- *Country_Pattern_Scaling.ipynb*
-- *Calculate_Damages.py*
+- *Country_Pattern_Scaling.ipynb*:
+- *Calculate_Damages.py*: This is the workhorse script of the paper. This script loads the observed economic and climate data, country-specific pattern scaling coefficients, FaIR output, and damage function parameters, and uses them to calculate the economic damages in each country attributable to each other country. The script is written to take command-line input for the specific accounting scheme and time period required. So if you wanted to calculate attributable damages over 1990-2014 using consumption-based emissions and the default short-run damage function, you'd type *python Calculate_Damages.py consumption BHMSR 1990 2014 1990 2014*. The repetitive years (typing "1990 2014" twice) are to enable you to calculate economic damages and country-level emissions contributions from FaIR over two different time periods (e.g., economic damages over 1990-2014 based on U.S. emissions contributions from 1960-2014), but in practice these are always the same pair of years.
 - *Process_Damages.py*
+- *Fig1.ipynb*, *Fig2.ipynb*, *Fig3.ipynb*, *Fig4.ipynb*: These scripts load processed data and create the plots that you can find the paper. No post-processing of figures required!
 
 Christopher Callahan
 
