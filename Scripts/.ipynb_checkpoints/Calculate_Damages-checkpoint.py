@@ -18,16 +18,16 @@ import psutil
 import warnings
 
 # Data locations
-loc_shp = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/ProcessedCountryShapefile/"
-loc_gmst_fair = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/FAIR/GMST/"
-loc_panel = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Panel/"
-loc_pop = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Population/"
-loc_damagefunc = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/DamageFunction/"
-loc_pattern = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/PatternScaling/"
-loc_out_tdiff_global = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/FAIR/TempDifference/Historical/"
-loc_out_tdiff_countries = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/FAIR/TempDifference/Country-Attributed/"
-loc_out_damages_hist = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Damages/Historical/"
-loc_out_damages_countries = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Damages/Country-Attributed/"
+loc_shp = "../Data/CountryShapefile/"
+loc_gmst_fair = "../Data/FAIR/GMST/"
+loc_panel = "../Data/Panel/"
+loc_pop = "../Data/Population/"
+loc_damagefunc = "../Data/DamageFunction/"
+loc_pattern = "../Data/PatternScaling/"
+loc_out_tdiff_global = "../Data/FAIR/TempDifference/Historical/"
+loc_out_tdiff_countries = "../Data/FAIR/TempDifference/Country-Attributed/"
+loc_out_damages_hist = "../Data/Damages/Historical/"
+loc_out_damages_countries = "../Data/Damages/Country-Attributed/"
 
 # get command line info
 accounting = sys.argv[1] # consumption vs. territorial accounting
