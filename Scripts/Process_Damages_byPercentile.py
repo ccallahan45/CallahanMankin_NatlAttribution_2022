@@ -18,13 +18,13 @@ import psutil
 import warnings
 
 # data locations
-loc_shp = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/ProcessedCountryShapefile/"
-loc_gmst_fair = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/FAIR/GMST/"
-loc_panel = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Panel/"
-loc_pop = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Population/"
-loc_damages_hist = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Damages/Historical/"
-loc_damages_country = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Damages/Country-Attributed/"
-loc_out = "/dartfs-hpc/rc/lab/C/CMIG/ccallahan/National_Attribution/Data/Damages/Processed/"
+loc_shp = "../Data/CountryShapefile/"
+loc_gmst_fair = "../Data/FAIR/GMST/"
+loc_panel = "../Data/Panel/"
+loc_pop = "../Data/Population/"
+loc_damages_hist = "../Data/Damages/Historical/"
+loc_damages_country = "../Data/Damages/Country-Attributed/"
+loc_out = "../Data/Damages/Processed/"
 
 # get command line info
 accounting = sys.argv[1] # consumption vs. territorial accounting
