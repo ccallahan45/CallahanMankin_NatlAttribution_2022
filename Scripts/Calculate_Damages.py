@@ -290,7 +290,7 @@ for ii in iso_range:
 
         #print("calculating significance",flush=True)
         # test significance
-        sig_test = "t" # "ks" #"t"
+        sig_test = "ks" #"t"
         alpha = 0.05
         def ks_p(x,y):
             ks, p = stats.ks_2samp(x,y)
