@@ -2,6 +2,8 @@
 
 This repository provides replication data and code for the paper "National attribution of historical climate damages," by Christopher W. Callahan and Justin S. Mankin, published in _Climatic Change_ (https://doi.org/10.1007/s10584-022-03387-y).
 
+We've built a website to provide much of the data that arose from this project: https://rcweb.dartmouth.edu/CMIG/national_attribution_2022/prod/. You can download the effects of one emitting country on each other country, or the effects of every other country on a single chosen country, by following the instructions on the landing page. Don't hesitate to contact me with questions if issues arise.
+
 ### Overview
 
 The repository is organized into **Scripts/**, **Figures/**, and **Data/** folders.
